@@ -16,7 +16,25 @@ public class HexSpawner : MonoBehaviour {
 	
     void SpawnHex()
     {
-        Instantiate(hex, transform.position, Quaternion.identity);
+        Color randColor = Color.gray;
+        int randInt = (int)Random.Range(0f, 3.0f);
+        switch (randInt)
+        {
+            case 0:
+                randColor = Color.blue;
+                break;
+            case 1:
+                randColor = Color.green;
+                break;
+            case 2:
+                randColor = Color.red;
+                break;
+            case 3:
+                randColor = Color.yellow;
+                break;
+        }
+        GameObject newHex = Instantiate(hex, transform.position, Quaternion.identity);
+        newHex.GetComponentInChildren<Renderer>().material.SetColor("_Color", randColor);
     }
 
 }
